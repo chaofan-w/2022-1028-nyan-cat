@@ -13,7 +13,7 @@ const STEP_X = 16;
 // as well as the maximum number of enemies on screen at any given time.
 const ENEMY_WIDTH = GAME_WIDTH / STEP_X;
 const ENEMY_HEIGHT = ENEMY_WIDTH * 2;
-const MAX_ENEMIES = STEP_X / 2;
+const MAX_ENEMIES = Math.floor(STEP_X / 3);
 
 // These constants represent the player width and height.
 const PLAYER_WIDTH = GAME_WIDTH / STEP_X;
