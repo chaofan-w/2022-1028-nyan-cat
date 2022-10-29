@@ -71,6 +71,18 @@ class Engine {
     this.lastBulletFrame = new Date().getTime();
     this.bullets.forEach((bullet) => {
       bullet.update(bulletTimeDiff);
+      this.enemies.forEach((enemy) => {
+        if (
+          enemy.y <= bullet.y - ENEMY_HEIGHT &&
+          enemy.x <= bullet.x + BULLET_WIDTH &&
+          enemy.x >= bullet.x - ENEMY_WIDTH
+        ) {
+          enemy.root.removeChild(enemy.domElement);
+          enemy.destroyed = true;
+          bullet.root.removeChild(bullet.domElement);
+          bullet.destroyed = true;
+        }
+      });
     });
 
     this.bullets = this.bullets.filter((bullet) => {
@@ -82,7 +94,7 @@ class Engine {
   };
 
   shoot = () => {
-    this.enemies.push(new Bullet(this.root, this.player.x, this.player.y));
+    this.bullets.push(new Bullet(this.root, this.player.x, this.player.y));
   };
 
   // This method is not implemented correctly, which is why
