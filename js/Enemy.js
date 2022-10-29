@@ -24,7 +24,8 @@ class Enemy {
     this.x = enemySpot * ENEMY_WIDTH;
 
     // The y position is initially less than 0 so that the enemies fall from the top. This data is stored as a property
-    // of the instance since it is needed throughout its lifetime. The destroyed property will indicate whether this enemy
+    // of the instance since it is needed throughout its lifetime. The
+    // destroyed property will indicate whether this enemy
     // is still in play. It is set to true whenever the enemy goes past the bottom of the screen.
     // It is used in the Engine to determine whether or not an enemy is in a particular column.
     this.y = -ENEMY_HEIGHT;
@@ -33,12 +34,14 @@ class Enemy {
     // We create a new DOM element. The tag of this DOM element is img. It is the DOM node that will display the enemy image
     // to the user. When the enemy is no longer needed, we will use a reference to this DOM node to remove it from the game. This
     // is why we create a property that refers to it.
-    this.domElement = document.createElement('img');
+    this.domElement = document.createElement("img");
 
     // We give it a src attribute to specify which image to display.
-    this.domElement.src = './images/enemy.png';
+    this.domElement.src = "./images/enemy.png";
     // We modify the CSS style of the DOM node.
-    this.domElement.style.position = 'absolute';
+    this.domElement.style.width = `${ENEMY_WIDTH}px`;
+    this.domElement.style.height = `${ENEMY_HEIGHT}px`;
+    this.domElement.style.position = "absolute";
     this.domElement.style.left = `${this.x}px`;
     this.domElement.style.top = `${this.y}px`;
     this.domElement.style.zIndex = 5;
