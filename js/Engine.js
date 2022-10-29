@@ -14,6 +14,7 @@ class Engine {
     // Initially, we have no enemies in the game. The enemies property refers to an array
     // that contains instances of the Enemy class
     this.enemies = [];
+    this.bullets = [];
     // We add the background image to the game
     addBackground(this.root);
   }
@@ -57,17 +58,48 @@ class Engine {
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
     if (this.isPlayerDead()) {
-      window.alert('Game over');
+      window.alert("Game over");
       return;
     }
+
+    // -----------------------------------------------------------------
+    if (this.lastBulletFrame === undefined) {
+      this.lastBulletFrame = new Date().getTime();
+    }
+
+    let bulletTimeDiff = new Date().getTime() - this.lastBulletFrame;
+    this.lastBulletFrame = new Date().getTime();
+    this.bullets.forEach((bullet) => {
+      bullet.update(bulletTimeDiff);
+    });
+
+    this.bullets = this.bullets.filter((bullet) => {
+      return !bullet.destroyed;
+    });
 
     // If the player is not dead, then we put a setTimeout to run the gameLoop in 20 milliseconds
     setTimeout(this.gameLoop, 20);
   };
 
+  shoot = () => {
+    this.enemies.push(new Bullet(this.root, this.player.x, this.player.y));
+  };
+
   // This method is not implemented correctly, which is why
   // the burger never dies. In your exercises you will fix this method.
+
   isPlayerDead = () => {
-    return false;
+    let collision = false;
+    this.enemies.forEach((enemy) => {
+      if (
+        enemy.y <= this.player.y + PLAYER_HEIGHT &&
+        enemy.y >= this.player.y - ENEMY_HEIGHT &&
+        this.player.x === enemy.x
+      ) {
+        collision = true;
+        return;
+      }
+    });
+    return collision;
   };
 }
