@@ -77,10 +77,12 @@ class Engine {
           enemy.x <= bullet.x + BULLET_WIDTH &&
           enemy.x >= bullet.x - ENEMY_WIDTH
         ) {
-          enemy.root.removeChild(enemy.domElement);
-          enemy.destroyed = true;
-          bullet.root.removeChild(bullet.domElement);
-          bullet.destroyed = true;
+          try {
+            enemy.root.removeChild(enemy.domElement);
+            enemy.destroyed = true;
+          } catch (e) {
+            console.log(e.message);
+          }
         }
       });
     });
