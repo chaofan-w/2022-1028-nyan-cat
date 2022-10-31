@@ -75,6 +75,18 @@ class Engine {
         fuel = 0;
         this.countBanner.update(`Fuel: ${fuel}% | Score: ${score}`);
       }
+      if (fuel === 0) {
+        let gameover = new Text(
+          this.root,
+          `${GAME_WIDTH / 2 - 200}px`,
+          `${GAME_HEIGHT / 2 - 100}px`
+        );
+        gameover.domElement.className = "gameover";
+        gameover.domElement.style.textAlign = "center";
+        gameover.domElement.style.width = "400px";
+        gameover.domElement.style.height = "200px";
+        gameover.update("G A M E   O V E R ! \n Press <Enter> to play again");
+      }
       console.log(enemyGenerationCounts);
       return;
     }
@@ -141,11 +153,29 @@ class Engine {
         if (enemy.domElement.classList.contains("goldApple")) {
           collision = false;
           fuel = 100;
+          let fuelPopUp = new Popup(
+            this.root,
+            this.player.x,
+            `${this.player.y + 20}px`
+          );
+          fuelPopUp.update("100% recovered!");
+          setTimeout(() => {
+            fuelPopUp.domElement.remove();
+          }, 800);
           enemy.domElement.remove();
           enemy.destroyed = true;
         } else if (enemy.domElement.classList.contains("reload")) {
           collision = false;
           bulletLoad = 30;
+          let fuelPopUp = new Popup(
+            this.root,
+            this.player.x,
+            `${this.player.y + 20}px`
+          );
+          fuelPopUp.update("30 Arrows Reloaded!");
+          setTimeout(() => {
+            fuelPopUp.domElement.remove();
+          }, 800);
           enemy.domElement.remove();
           enemy.destroyed = true;
         } else {

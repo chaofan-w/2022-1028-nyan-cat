@@ -47,6 +47,9 @@ const startGame = () => {
       bullet.remove();
     });
   }
+  if (document.querySelector(".gameover")) {
+    document.querySelector(".gameover").remove();
+  }
 
   gameEngine.gameLoop();
 };
