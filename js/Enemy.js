@@ -38,6 +38,7 @@ class Enemy {
 
     // We give it a src attribute to specify which image to display.
     this.domElement.src = "./images/enemy.png";
+    this.domElement.className = "enemy";
     // We modify the CSS style of the DOM node.
     this.domElement.style.width = `${ENEMY_WIDTH}px`;
     this.domElement.style.height = `${ENEMY_HEIGHT}px`;
@@ -48,7 +49,7 @@ class Enemy {
 
     // Show that the user can actually see the img DOM node, we append it to the root DOM node.
     theRoot.appendChild(this.domElement);
-    this.speed = Math.random() / 2 + 0.25;
+    this.speed = Math.random() / 2 + 0.15;
   }
 
   // We set the speed property of the enemy. This determines how fast it moves down the screen.
@@ -66,7 +67,8 @@ class Enemy {
     // of the screen and should be removed. We remove the DOM element from the root DOM element and we set
     // the destroyed property to indicate that the enemy should no longer be in play
     if (this.y > GAME_HEIGHT) {
-      this.root.removeChild(this.domElement);
+      // this.root.removeChild(this.domElement);
+      this.domElement.remove();
       this.destroyed = true;
     }
   }

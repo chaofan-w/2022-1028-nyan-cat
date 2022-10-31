@@ -17,6 +17,8 @@ class Engine {
     this.bullets = [];
     // We add the background image to the game
     addBackground(this.root);
+    this.countBanner = new Text(this.root, "5vw", "5vh");
+    this.countBullet = new Text(this.root, `${GAME_WIDTH - 300}px`, "5vh");
   }
 
   // The gameLoop will run every few milliseconds. It does several things
@@ -27,6 +29,11 @@ class Engine {
     // This code is to see how much time, in milliseconds, has elapsed since the last
     // time this method was called.
     // (new Date).getTime() evaluates to the number of milliseconds since January 1st, 1970 at midnight.
+
+    this.countBanner.update(`Fuel: ${fuel}% | Score: ${score}`);
+    this.countBullet.update(`Bullet Loads: ${bulletLoad} of 30`);
+    document.removeEventListener("keydown", startGameHandler);
+
     if (this.lastFrame === undefined) {
       this.lastFrame = new Date().getTime();
     }
@@ -58,9 +65,22 @@ class Engine {
     // We check if the player is dead. If he is, we alert the user
     // and return from the method (Why is the return statement important?)
     if (this.isPlayerDead()) {
-      window.alert("Game over");
+      document.addEventListener("keydown", startGameHandler);
+      document.removeEventListener("keydown", keydownHandler);
+      if (fuel >= 20) {
+        fuel -= 20;
+        this.countBanner.update(`Fuel: ${fuel}% | Score: ${score}`);
+      } else {
+        fuel = 0;
+        this.countBanner.update(`Fuel: ${fuel}% | Score: ${score}`);
+      }
       return;
     }
+
+    // else {
+    //   return;
+    // }
+    // window.alert("Game over");
 
     // -----------------------------------------------------------------
     if (this.lastBulletFrame === undefined) {
@@ -73,15 +93,21 @@ class Engine {
       bullet.update(bulletTimeDiff);
       this.enemies.forEach((enemy) => {
         if (
-          enemy.y <= bullet.y - ENEMY_HEIGHT &&
-          enemy.x <= bullet.x + BULLET_WIDTH &&
-          enemy.x >= bullet.x - ENEMY_WIDTH
+          enemy.y >= bullet.y - ENEMY_HEIGHT &&
+          // enemy.x <= bullet.x + BULLET_WIDTH &&
+          // enemy.x >= bullet.x - ENEMY_WIDTH
+          bullet.x === enemy.x + ENEMY_WIDTH / 4
         ) {
-          try {
-            enemy.root.removeChild(enemy.domElement);
+          if (enemy.domElement) {
+            // enemy.root.removeChild(enemy.domElement);
+            enemy.domElement.remove();
             enemy.destroyed = true;
-          } catch (e) {
-            console.log(e.message);
+            score++;
+          }
+          if (bullet.domElement) {
+            bullet.destroyed = true;
+            // bullet.root.removeChild(bullet.domElement);
+            bullet.domElement.remove();
           }
         }
       });
@@ -111,7 +137,6 @@ class Engine {
         this.player.x === enemy.x
       ) {
         collision = true;
-        return;
       }
     });
     return collision;
