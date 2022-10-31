@@ -87,3 +87,5 @@ const enemyImgs = [
   "./images/ender-dragon-end-dragon.gif",
   "./images/minecraft-blaze.gif",
 ];
+
+let enemyGenerationCounts = 0;

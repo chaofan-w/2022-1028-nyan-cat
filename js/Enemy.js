@@ -38,8 +38,16 @@ class Enemy {
 
     // We give it a src attribute to specify which image to display.
     let imgIndex = Math.floor(Math.random() * enemyImgs.length);
-    this.domElement.src = enemyImgs[imgIndex];
     this.domElement.className = "enemy";
+    if (enemyGenerationCounts % 60 === 0) {
+      this.domElement.classList.add("goldApple");
+      this.domElement.src = "./images/minecraft-notch-apple.gif";
+    } else if (enemyGenerationCounts % 25 === 0) {
+      this.domElement.classList.add("reload");
+      this.domElement.src = "./images/minecraft-mojang.gif";
+    } else {
+      this.domElement.src = enemyImgs[imgIndex];
+    }
     // We modify the CSS style of the DOM node.
     this.domElement.style.width = `${ENEMY_WIDTH}px`;
     // this.domElement.style.maxWidth = `100%`;
