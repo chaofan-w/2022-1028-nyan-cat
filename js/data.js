@@ -21,3 +21,58 @@ const PLAYER_HEIGHT = PLAYER_WIDTH * 0.7;
 
 const BULLET_WIDTH = PLAYER_WIDTH / 2;
 const BULLET_HEIGHT = PLAYER_WIDTH / 2;
+let fuel = 100;
+let bulletLoad = 30;
+let score = 0;
+
+const startGame = () => {
+  document.addEventListener("keydown", keydownHandler);
+  if (fuel > 0) {
+    fuel = fuel;
+    bulletLoad = bulletLoad;
+    score = score;
+  } else {
+    fuel = 100;
+    bulletLoad = 30;
+    score = 0;
+  }
+  if (document.querySelectorAll(".enemy")) {
+    document.querySelectorAll(".enemy").forEach((enemy) => {
+      enemy.remove();
+    });
+  }
+
+  if (document.querySelectorAll(".bullet")) {
+    document.querySelectorAll(".bullet").forEach((bullet) => {
+      bullet.remove();
+    });
+  }
+
+  gameEngine.gameLoop();
+};
+
+const keydownHandler = (event) => {
+  // event.code contains a string. The string represents which key was press. If the
+  // key is left, then we call the moveLeft method of gameEngine.player (where is this method defined?)
+  if (event.code === "ArrowLeft") {
+    gameEngine.player.moveLeft();
+  }
+
+  // If `event.code` is the string that represents a right arrow keypress,
+  // then move our hamburger to the right
+  if (event.code === "ArrowRight") {
+    gameEngine.player.moveRight();
+  }
+  if (event.code === "ArrowUp") {
+    gameEngine.player.moveUp();
+  }
+  if (event.code === "ArrowDown") {
+    gameEngine.player.moveDown();
+  }
+  if (event.code === "KeyB") {
+    if (bulletLoad > 0) {
+      bulletLoad--;
+      gameEngine.shoot();
+    }
+  }
+};
