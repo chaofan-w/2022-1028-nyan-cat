@@ -60,6 +60,7 @@ class Engine {
       // We add this enemy to the enemies array
       const spot = nextEnemySpot(this.enemies);
       this.enemies.push(new Enemy(this.root, spot));
+      enemyGenerationCounts++;
     }
 
     // We check if the player is dead. If he is, we alert the user
@@ -74,6 +75,7 @@ class Engine {
         fuel = 0;
         this.countBanner.update(`Fuel: ${fuel}% | Score: ${score}`);
       }
+      console.log(enemyGenerationCounts);
       return;
     }
 
@@ -136,7 +138,19 @@ class Engine {
         enemy.y >= this.player.y - ENEMY_HEIGHT &&
         this.player.x === enemy.x
       ) {
-        collision = true;
+        if (enemy.domElement.classList.contains("goldApple")) {
+          collision = false;
+          fuel = 100;
+          enemy.domElement.remove();
+          enemy.destroyed = true;
+        } else if (enemy.domElement.classList.contains("reload")) {
+          collision = false;
+          bulletLoad = 30;
+          enemy.domElement.remove();
+          enemy.destroyed = true;
+        } else {
+          collision = true;
+        }
       }
     });
     return collision;
