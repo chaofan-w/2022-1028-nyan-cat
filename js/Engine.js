@@ -86,7 +86,13 @@ class Engine {
         gameover.domElement.style.width = "400px";
         gameover.domElement.style.height = "200px";
         gameover.update("G A M E   O V E R ! \n Press <Enter> to play again");
+        document.getElementById("BGM").pause();
+        document.getElementById("BGM").currentTime = 0;
+        document.getElementById("gameOverSound").play();
       }
+      document.getElementById("BGM").pause();
+      document.getElementById("gameOverSound").play();
+      document.getElementById("BGM").currentTime = 0;
       console.log(enemyGenerationCounts);
       return;
     }
@@ -137,6 +143,7 @@ class Engine {
 
   shoot = () => {
     this.bullets.push(new Bullet(this.root, this.player.x, this.player.y));
+    document.getElementById("shooting").play();
   };
 
   // This method is not implemented correctly, which is why
@@ -158,6 +165,7 @@ class Engine {
             this.player.x,
             `${this.player.y + 20}px`
           );
+          document.getElementById("speedUp").play();
           fuelPopUp.update("100% recovered!");
           setTimeout(() => {
             fuelPopUp.domElement.remove();
@@ -173,6 +181,7 @@ class Engine {
             `${this.player.y + 20}px`
           );
           fuelPopUp.update("30 Arrows Reloaded!");
+          document.getElementById("speedUp").play();
           setTimeout(() => {
             fuelPopUp.domElement.remove();
           }, 800);
