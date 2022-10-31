@@ -9,7 +9,7 @@ class Bullet {
 
     this.domElement = document.createElement("img");
     this.domElement.className = "bullet";
-    this.domElement.src = "images/icons8-bullet-50.png";
+    this.domElement.src = "images/arrow.png";
     this.domElement.style.width = `${BULLET_WIDTH}px`;
     this.domElement.style.width = `${BULLET_HEIGHT}px`;
     this.domElement.style.position = "absolute";

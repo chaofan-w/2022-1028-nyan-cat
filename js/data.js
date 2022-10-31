@@ -12,12 +12,12 @@ const STEP_X = 16;
 // These constants represent the width and height of an enemy in pixels
 // as well as the maximum number of enemies on screen at any given time.
 const ENEMY_WIDTH = GAME_WIDTH / STEP_X;
-const ENEMY_HEIGHT = ENEMY_WIDTH * 2;
+const ENEMY_HEIGHT = ENEMY_WIDTH * 1.2;
 const MAX_ENEMIES = Math.floor(STEP_X / 3);
 
 // These constants represent the player width and height.
 const PLAYER_WIDTH = GAME_WIDTH / STEP_X;
-const PLAYER_HEIGHT = PLAYER_WIDTH * 0.7;
+const PLAYER_HEIGHT = PLAYER_WIDTH * 1.5;
 
 const BULLET_WIDTH = PLAYER_WIDTH / 2;
 const BULLET_HEIGHT = PLAYER_WIDTH / 2;
@@ -76,3 +76,14 @@ const keydownHandler = (event) => {
     }
   }
 };
+
+const mineCraftBkg =
+  "https://wallpapers.com/wallpapers/minecraft-dirt-grass-pixelated-art-182eubjywbt351az.html?embed=true";
+
+const enemyImgs = [
+  "./images/minecraft-squid.gif",
+  "./images/creeper-spin.gif",
+  "./images/zombie.gif",
+  "./images/ender-dragon-end-dragon.gif",
+  "./images/minecraft-blaze.gif",
+];

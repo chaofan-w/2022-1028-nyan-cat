@@ -17,7 +17,7 @@ class Player {
     // DOM node in a property.
     this.domElement = document.createElement("img");
     this.domElement.className = "player";
-    this.domElement.src = "images/player.png";
+    this.domElement.src = "images/Mikey.png";
     this.domElement.style.width = `${PLAYER_WIDTH}px`;
     this.domElement.style.height = `${PLAYER_HEIGHT}px`;
     this.domElement.style.position = "absolute";
