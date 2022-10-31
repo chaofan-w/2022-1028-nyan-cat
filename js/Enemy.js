@@ -37,10 +37,12 @@ class Enemy {
     this.domElement = document.createElement("img");
 
     // We give it a src attribute to specify which image to display.
-    this.domElement.src = "./images/enemy.png";
+    let imgIndex = Math.floor(Math.random() * enemyImgs.length);
+    this.domElement.src = enemyImgs[imgIndex];
     this.domElement.className = "enemy";
     // We modify the CSS style of the DOM node.
     this.domElement.style.width = `${ENEMY_WIDTH}px`;
+    // this.domElement.style.maxWidth = `100%`;
     this.domElement.style.height = `${ENEMY_HEIGHT}px`;
     this.domElement.style.position = "absolute";
     this.domElement.style.left = `${this.x}px`;
