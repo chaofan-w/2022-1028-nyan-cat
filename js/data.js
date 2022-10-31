@@ -51,6 +51,7 @@ const startGame = () => {
     document.querySelector(".gameover").remove();
   }
 
+  document.getElementById("BGM").play();
   gameEngine.gameLoop();
 };
 
@@ -75,6 +76,7 @@ const keydownHandler = (event) => {
   if (event.code === "KeyB") {
     if (bulletLoad > 0) {
       bulletLoad--;
+
       gameEngine.shoot();
     }
   }
