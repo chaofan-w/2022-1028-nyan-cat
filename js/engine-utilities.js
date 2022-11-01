@@ -65,8 +65,53 @@ const addBackground = (root) => {
   whiteBox.style.top = `${GAME_HEIGHT}px`;
   whiteBox.style.height = `${document.body.offsetHeight - GAME_HEIGHT}px`;
   whiteBox.style.width = `${GAME_WIDTH}px`;
-  whiteBox.style.background = "cornflowerblue";
+  whiteBox.style.backgroundImage = "url('./images/bottomBkg.jpg-1.png')";
+  whiteBox.style.backgroundPosition = "center";
+  whiteBox.style.backgroundSize = "cover";
+
   root.append(whiteBox);
+
+  const startPage = document.createElement("div");
+  startPage.className = "startPage";
+  startPage.style.zIndex = 100;
+  startPage.innerText =
+    "Let's help Mikey Turtle explore the world of minecraft!" +
+    "\n" +
+    "⬆ ➡ ⬇ ⬅ to move" +
+    "\n" +
+    "press 🅱 to fire" +
+    "\n" +
+    "catch 🍏 to refeul" +
+    "\n" +
+    "catch 🏹 to reload" +
+    "\n" +
+    "press enter to start";
+  startPage.style = `
+    text-align: 'center'; 
+    margin:10vh auto;
+    width:50vw;
+    height:30vw;
+    color:white;
+    position:absolute;
+    top:30%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:white;
+    font-family:'Roboto Condensed', sans-serif;
+    font-size:2.5vw;
+    padding:10px;
+    border-radius:7px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    line-height:3vw;
+    
+
+
+  `;
+  root.append(startPage);
 };
 
 // console.log(document.body.offsetHeight);
