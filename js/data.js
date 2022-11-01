@@ -5,8 +5,9 @@
 
 // The GAME_WIDTH and GAME_HEIGHT constants denote the size
 // of the game area in pixels and is used in engine-utilities.js.
-const GAME_WIDTH = 1120;
-const GAME_HEIGHT = 650;
+
+const GAME_WIDTH = document.body.offsetWidth;
+const GAME_HEIGHT = document.body.offsetHeight * 0.9;
 const STEP_X = 16;
 
 // These constants represent the width and height of an enemy in pixels
@@ -49,6 +50,9 @@ const startGame = () => {
   }
   if (document.querySelector(".gameover")) {
     document.querySelector(".gameover").remove();
+  }
+  if (document.querySelector(".startPage")) {
+    document.querySelector(".startPage").remove();
   }
 
   document.getElementById("BGM").play();
