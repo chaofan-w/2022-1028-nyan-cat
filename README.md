@@ -50,8 +50,8 @@ Chaofan Wu
 </br> ![gmail-shield] chaofan.w@gmail.com
 </br> [![linkedin-shield]][linkedin-url]
 </br> My Portfolio Site: www.chaofanwu.com
-Project Link: [https://github.com/chaofan-w/2022-1028-nyan-cat](https://github.com/chaofan-w/2022-1028-nyan-cat)
-liveDemo Link: https://gogomikey.netlify.app
+</br> Project Link: [https://github.com/chaofan-w/2022-1028-nyan-cat](https://github.com/chaofan-w/2022-1028-nyan-cat)
+</br> liveDemo Link: https://gogomikey.netlify.app
 
 [javascript.js]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
 [javascript-url]: https://www.javascript.com/
